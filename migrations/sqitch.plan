@@ -1,0 +1,4 @@
+%syntax-version=1.0.0
+%project=quiz
+
+init 2024-03-13T13:19:53Z ,,, <jeremy_breton@ASUS> # Initial setup of Sqitch
