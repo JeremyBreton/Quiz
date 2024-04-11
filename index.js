@@ -1,11 +1,17 @@
-const express = require('express');
-const app = express();
-const port = 3000;
+require('dotenv').config({ override: true });
+const debug = require('debug')('quiz:httpserver');
+const http = require('http');
+const app = require('./app/index.app');
+const { client, connectDatabase } = require('./app/models/client.js'); // Importer le client et la fonction de connexion
 
-app.get('/', (req, res) => {
-    res.send('Hello World!');
-});
+// Appel de la fonction pour établir la connexion à la base de données
+connectDatabase();
 
-app.listen(port, () => {
-    console.log(`Server is listening at http://localhost:${port}`);
+const PORT = process.env.PORT ?? 3000;
+
+const server = http.createServer(app);
+
+server.listen(PORT, () => {
+  console.log(`Server ready on http://localhost:${PORT}`);
+  debug(`Server ready on http://localhost:${PORT}`);
 });
