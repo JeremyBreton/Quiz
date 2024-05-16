@@ -5,6 +5,10 @@ const CoreDataMapper = require('./CoreDatamapper');
 class QuizDataMapper extends CoreDataMapper {
   static tableName = 'quiz';
 
+  static insertFunc = 'insert_quiz';
+
+  static updateFunc = 'update_quiz';
+
 
   /**
    * create a category data mapper

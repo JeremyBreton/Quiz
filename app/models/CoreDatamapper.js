@@ -27,7 +27,7 @@ class CoreDataMapper {
   async findByPk(id) {
     debug(`${this.constructor.name} findByPk(${id})`);
     const preparedQuery = {
-      text: `SELECT * FROM "${tableName}" WHERE id=$1`,
+      text: `SELECT * FROM "${this.constructor.tableName}" WHERE id=$1`,
       values: [id],
     };
     const results = await client.query(preparedQuery);
@@ -40,11 +40,12 @@ class CoreDataMapper {
 //    * @param {Object} obj - the entry to create
 //    * @returns {Object} the created entry
 //    */
-//   async create(createObj) {
-//     debug(`${this.constructor.name} create`);
-//     const results = await client.query(`SELECT * FROM ${this.constructor.insertFunc}('${JSON.stringify(createObj)}')`);
-//     return results.rows[0];
-//   }
+  async create(createObj) {
+    debug(`${this.constructor.name} create`);
+    debug(`${this.constructor.insertFunc}`);
+    const results = await client.query(`SELECT * FROM ${this.constructor.insertFunc}('${JSON.stringify(createObj)}')`);
+    return results.rows[0];
+  }
 
 //   /**
 //    * modify an entry
@@ -54,11 +55,11 @@ class CoreDataMapper {
 //    * @returns {Object} the modified entry
 //    */
 
-//   async modify(modObject) {
-//     debug(`${this.constructor.name} modify(${modObject.id})`);
-//     const results = await client.query(`SELECT * FROM ${this.constructor.updateFunc}('${JSON.stringify(modObject)}')`);
-//     return results.rows[0];
-//   }
+  async modify(modObject) {
+    debug(`${this.constructor.name} modify(${modObject.id})`);
+    const results = await client.query(`SELECT * FROM ${this.constructor.updateFunc}('${JSON.stringify(modObject)}')`);
+    return results.rows[0];
+  }
 
   /**
    * remove an entry

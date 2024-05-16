@@ -1,0 +1,99 @@
+@apiEndpoint = http://localhost:{{$dotenv PORT}}/api
+@frontEndpoint = http://localhost:{{$dotenv PORT}}/
+
+### 404
+GET {{ frontEndpoint }}/nowayFor404
+
+### 404
+GET {{ apiEndpoint }}/nowayFor404
+
+### Récupération de toutes les questions
+GET {{ apiEndpoint }}/question
+
+### Récupération du post 3
+GET {{ apiEndpoint }}/question/3
+
+### Récupération des questions du quiz 3
+GET {{ apiEndpoint }}/question/quiz/3
+
+### Création d'une question valide
+POST {{ apiEndpoint }}/question/
+Content-Type: application/json
+
+{
+  "question_text": "Quel est le nom de Kobe ?",
+  "quiz_id": 1,
+  "theme_id": 1
+}
+
+### Création d'une nouvelle question non non valide (quiz_id is required)
+POST {{ apiEndpoint }}/question/
+Content-Type: application/json
+
+{
+  "question_text": "Quel est le nom de Shaq ?",
+  "theme_id": 1
+}
+
+################################################# TOUT FONCTIONNE JUSQU ICI
+
+### Modification de la question 35
+PATCH {{ apiEndpoint }}/question/35
+Content-Type: application/json
+
+{
+  "question_text": "Quel est le nom de Paul Lacombe ?",
+  "quiz_id": 1,
+  "theme_id": 1
+}
+
+################################################# BUG ICI
+
+
+### suppression d'un post
+DELETE {{ apiEndpoint }}/posts/3
+
+
+### Récupération de toutes les catégories
+GET {{ apiEndpoint }}/categories
+
+### Récupération de la catégorie 3
+GET {{ apiEndpoint }}/categories/3
+
+### Création d'une catégorie
+POST {{ apiEndpoint }}/categories/
+Content-Type: application/json
+
+{
+  "route": "/svelte",
+  "label": "Svelte"
+}
+
+### Création d'une catégorie non valide
+POST {{ apiEndpoint }}/categories/
+Content-Type: application/json
+
+{
+  "route": "/$velte",
+  "label": "Svelte"
+}
+
+### Création d'une catégorie non valide 2
+POST {{ apiEndpoint }}/categories/
+Content-Type: application/json
+
+{
+  "way": "/svelte",
+  "label": "Svelte"
+}
+
+### modification d'une catégorie
+PATCH {{ apiEndpoint }}/categories/3
+Content-Type: application/json
+
+{
+  "label": "pas bien react"
+}
+
+### suppression d'une catégorie
+DELETE {{ apiEndpoint }}/categories/200

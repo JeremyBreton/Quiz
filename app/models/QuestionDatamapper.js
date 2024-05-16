@@ -6,6 +6,12 @@ const client = require('../helpers/database');
 class QuestionDataMapper extends CoreDataMapper {
   static tableName = 'question';
 
+  static viewName = 'post_with_category';
+
+  static insertFunc = 'insert_question';
+
+  static updateFunc = 'update_question';
+
  /**
    * create a question data mapper
    *
