@@ -1,30 +1,31 @@
-const debug = require('debug')('oblog:app');
+const debug = require('debug')('quiz:app');
 const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const router = require('./routers/index.router');
-// const swagger = require('./services/swagger');
+const exp = require('constants');
+const swagger = require('./helpers/swagger');
 
 const app = express();
 
+// Template engine setup
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+
 // Swagger setup
-// swagger(app, path.join(__dirname, 'routers'));
+swagger(app, path.join(__dirname, 'routers'));
 
 // CORS setup
-// const corsOptions = {
-//   origin: process.env.CORS_DOMAINS ?? '*',
-// };
+app.use(cors('*')); 
+// pour utiliser sur tous les domaines
 
-// // Middlewares setup
-// app.use(cors(corsOptions));
-// app.use(express.static(path.join(__dirname, '../public/')));
-// app.use(express.json());
+// Middlewares static
+app.use(express.static(path.join(__dirname, '../public/')));
 
-// app.use((request, _, next) => {
-//   debug(`${request.method} ${request.url} - ${request.ip}`);
-//   next();
-// });
+// Middleware body-parser json
+app.use(express.json());
 
+// Routes
 app.use(router);
 
 module.exports = app;

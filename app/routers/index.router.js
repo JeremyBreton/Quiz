@@ -1,11 +1,9 @@
 const express = require('express');
-const quizRouter = require('./quiz.router');
-// const { apiController } = require('../../controllers/api');
+const websiteRouter = require('./website');
+const apiRouter = require('./api')
 
 const router = express.Router();
-
-// router.all('/', apiController.getHome);
-
-router.use('/quiz', quizRouter);
+router.use('/api', apiRouter)
+router.use('/', websiteRouter);
 
 module.exports = router;

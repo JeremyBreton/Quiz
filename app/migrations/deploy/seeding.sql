@@ -74,7 +74,7 @@ UPDATE "question" SET "theme_id" = 2 WHERE "question_text" IN ('Quel est la 1èr
 UPDATE "question" SET "theme_id" = 3 WHERE "question_text" IN ('Quel est la couleur du soleil ?', 'Quel est la couleur de l''herbe ?', 'Quel est la couleur des pompiers ?');
 
 -- Ajout de la contrainte de clé étrangère
-ALTER TABLE "question" ADD CONSTRAINT "fk_question_theme" FOREIGN KEY ("theme_id") REFERENCES "theme"("theme_id");
+ALTER TABLE "question" ADD CONSTRAINT "fk_question_theme" FOREIGN KEY ("theme_id") REFERENCES "theme"("id");
 
 
 COMMIT;

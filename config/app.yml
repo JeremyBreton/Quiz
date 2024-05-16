@@ -1,0 +1,9 @@
+# Exemple de fichier de configuration app.yml
+
+database:
+  driver: pg
+  dbname: quiz
+  host: localhost
+  port: 5432
+  user: postgres
+  password: adminc
