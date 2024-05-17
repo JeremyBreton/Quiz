@@ -15,10 +15,18 @@ class CoreController {
         response.json(results);
     }
 
-    async create(request, response){
-        const results = await this.constructor.dataMapper.create(request.body);
-        response.json(results);
-    }
+    // async create(request, response){
+    //     const results = await this.constructor.dataMapper.create(request.body);
+    //     response.json(results);
+    // }
+
+    async create(request, response) {
+        debug(`${this.constructor.name} create`);
+        const result = await this.constructor.dataMapper.create(request.body);
+        const responseObject = { status: 'success', data: { } };
+        responseObject.data[this.constructor.dataName] = result;
+        response.json(responseObject);
+      }
 
     // async modify(request, response){
     //     const { id } = request.params;

@@ -7,7 +7,6 @@ const schemas = {
         theme_id: Joi.number().integer().required(),
     }).required(),
     patch: Joi.object({
-        // id: Joi.number().integer().required(),
         question_text: Joi.string().required(),
         quiz_id: Joi.number().integer().required(),
         theme_id: Joi.number().integer().required(),
