@@ -11,7 +11,7 @@ const swaggerOptions = {
   info: {
     version: '1.0.0',
     title: 'Quiz API',
-    description: 'a simple quiz api',
+    description: 'A quiz api test',
   },
   filesPattern: './**/*.js',
   swaggerUIPath: '/api-docs',
