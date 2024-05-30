@@ -10,7 +10,7 @@ GET {{ apiEndpoint }}/nowayFor404
 ### Récupération de toutes les questions ✓
 GET {{ apiEndpoint }}/question
 
-### Récupération du post 3 ✓
+### Récupération de la question 3 ✓
 GET {{ apiEndpoint }}/question/3
 
 ### Récupération des questions du quiz 3 ✓
@@ -26,7 +26,7 @@ Content-Type: application/json
   "theme_id": 1
 }
 
-### Création d'une nouvelle question non non valide (quiz_id is required) ✓
+### Création d'une nouvelle question non valide (quiz_id is required) ✓
 POST {{ apiEndpoint }}/question/
 Content-Type: application/json
 
@@ -81,4 +81,4 @@ Content-Type: application/json
 }
 
 ### Suppression d'un quiz ✓
-DELETE {{ apiEndpoint }}/quiz/34
+DELETE {{ apiEndpoint }}/quiz/35

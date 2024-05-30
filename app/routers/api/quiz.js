@@ -11,7 +11,6 @@ const router = express.Router();
  * @typedef {object} Quiz
  * @property {number} id - quiz id
  * @property {string} quiz_name - quiz name
-
  */
 
 /**
@@ -22,6 +21,37 @@ const router = express.Router();
  *
  * @return {array<Quiz>} 200 - success response
  * @return {object} 500 - internal server error
+ * @example response - 200 - success response
+ [
+  {
+    "id": 1,
+    "quiz_name": "Quiz 1",
+    "created_at": "2024-04-11T15:38:21.431Z",
+    "updated_at": null,
+    "theme_id": null
+  },
+  {
+    "id": 2,
+    "quiz_name": "Quiz 2",
+    "created_at": "2024-04-11T15:38:21.431Z",
+    "updated_at": null,
+    "theme_id": null
+  },
+  {
+    "id": 3,
+    "quiz_name": "Quiz 3",
+    "created_at": "2024-04-11T15:38:21.431Z",
+    "updated_at": null,
+    "theme_id": null
+  },
+  {
+    "id": 35,
+    "quiz_name": "Quiz 100",
+    "created_at": "2024-05-17T09:13:41.140Z",
+    "updated_at": null,
+    "theme_id": null
+  }
+]
  */
 
 // router.get('/', quizController.getAll);
@@ -38,6 +68,7 @@ router.get('/', quizController.getAll.bind(quizController));
  *
  * @return {Quiz} 200 - success response
  * @return {object} 500 - internal server error
+ * 
  */
 router.post('/', validate(post, 'body'),quizController.create.bind(quizController));
 
@@ -51,6 +82,15 @@ router.post('/', validate(post, 'body'),quizController.create.bind(quizControlle
  *
  * @return {Quiz} 200 - success response
  * @return {object} 500 - internal server error
+ * 
+ * @example response - 200 - success response
+{
+  "id": 2,
+  "quiz_name": "Quiz 2",
+  "created_at": "2024-04-11T15:38:21.431Z",
+  "updated_at": null,
+  "theme_id": null
+}
  */
 router.get('/:id([0-9]*)', quizController.getOne.bind(quizController));
 
@@ -69,17 +109,36 @@ router.get('/:id([0-9]*)', quizController.getOne.bind(quizController));
  * }
  *
  * @example response - 200 - success response
- * {
- *   "id": 2,
- *   "quiz_name": "Quiz 2",
- *   "created_at": "2024-04-11T15:38:21.431Z",
- *   "updated_at": "2024-04-11T16:00:00.000Z",
- *   "theme_id": null
- * }
+{
+  "status": "success",
+  "data": {
+    "undefined": {
+      "id": 2,
+      "quiz_name": "Quiz 2",
+      "created_at": "2024-04-11T15:38:21.431Z",
+      "updated_at": null,
+      "theme_id": null
+    }
+  }
+}
  * @return {Quiz} 200 - success response
  * @return {object} 500 - internal server error
  */
 router.patch('/:id([0-9]*)', validate(patch, 'body'),quizController.modify.bind(quizController));
+
+/**
+ * DELETE /api/quiz/{id}
+ *
+ * @summary delete a quiz
+ * @tags Quiz
+ *
+ * @tags Quiz
+ *
+ * @param {number} id.path.required - Quiz ID
+ *
+ * @return {object} 204 - success response
+ * @return {object} 500 - internal server error
+ */
 router.delete('/:id([0-9]*)', quizController.delete.bind(quizController));
 
 
