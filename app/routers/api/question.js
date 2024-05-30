@@ -19,7 +19,7 @@ const router = express.Router();
  * GET /api/question
  *
  * @summary get all questions
- * @tags Question - All questions in the app
+ * @tags Question - Questions in the app
  *
  * @return {array<Question>} 200 - success response
  * @return {object} 500 - internal server error

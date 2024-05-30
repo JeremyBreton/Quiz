@@ -17,7 +17,7 @@ const router = express.Router();
  * GET /api/quiz
  *
  * @summary get all quiz
- * @tags Quiz - All quiz in the app
+ * @tags Quiz - Quiz in the app
  *
  * @return {array<Quiz>} 200 - success response
  * @return {object} 500 - internal server error
