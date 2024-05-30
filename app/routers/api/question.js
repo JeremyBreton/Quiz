@@ -135,7 +135,53 @@ router.get('/:id([0-9]*)', questionController.getOne.bind(questionController));
 ]
  */
 router.get('/quiz/:id([0-9]*)', questionController.getQuestionsFromQuiz.bind(questionController));
+
+/**
+ * PATCH /api/question/{id}
+ *
+ * @summary modify a question
+ * @tags Question
+ *
+ * @param {number} id.path.required - Question ID
+ * @param {object} request.body.required - Question data
+ *
+ * @example request - Question data
+ * {
+    "question_text": "Combien font 2+2 ?",
+    "quiz_id": 1,
+    "theme_id": 1
+ * }
+ *
+ * @example response - 200 - success response
+{
+  "status": "success",
+  "data": {
+    "undefined": {
+      "id": 35,
+      "question_text": "Où se déroule les JO 2024 ?",
+      "quiz_id": 3,
+      "created_at": "2024-05-16T12:35:36.663Z",
+      "updated_at": null,
+      "theme_id": 1
+    }
+  }
+}
+ */
 router.patch('/:id([0-9]*)', validate(patch, 'body'),questionController.modify.bind(questionController));
+
+/**
+ * DELETE /api/question/{id}
+ *
+ * @summary delete a question
+ * @tags Question
+ *
+ * @tags Question
+ *
+ * @param {number} id.path.required - Question ID
+ *
+ * @return {object} 204 - success response
+ * @return {object} 500 - internal server error
+ */
 router.delete('/:id([0-9]*)', questionController.delete.bind(questionController));
 
 

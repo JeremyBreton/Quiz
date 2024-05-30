@@ -65,6 +65,11 @@ router.get('/', quizController.getAll.bind(quizController));
  * @tags Quiz
  *
  * @param {Quiz} request.body - Quiz
+ * 
+ * @example request - Quiz data
+ * {
+ *   "quiz_name": "Quiz 0"
+ * }
  *
  * @return {Quiz} 200 - success response
  * @return {object} 500 - internal server error
