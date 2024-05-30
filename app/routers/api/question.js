@@ -72,7 +72,68 @@ router.get('/', questionController.getAll.bind(questionController));
 }
  */
 router.post('/', validate(post, 'body'),questionController.create.bind(questionController));
+
+/**
+ * GET /api/question/{id}
+ *
+ * @summary get a question
+ * @tags Question
+ *
+ * @param {number} id.path - Question id
+ *
+ * @return {Question} 200 - success response
+ * @return {object} 500 - internal server error
+ * 
+ * @example response - 200 - success response
+{
+  "id": 2,
+  "question_text": "Combien font 2+2 ?",
+  "quiz_id": 1,
+  "created_at": "2024-04-11T15:38:21.431Z",
+  "updated_at": null,
+  "theme_id": 1
+}
+ */
 router.get('/:id([0-9]*)', questionController.getOne.bind(questionController));
+
+/**
+ * GET /api/question/quiz/{id}
+ *
+ * @summary get all questions from a quiz
+ * @tags Question
+ *
+ * @param {number} id.path - quiz id
+ *
+ * @return {array<Question>} 200 - success response
+ * @return {object} 500 - internal server error
+ * @example response - 200 - success response
+ [
+  {
+    "id": 4,
+    "question_text": "Quel est la 1ère lettre de l'alphabet",
+    "quiz_id": 2,
+    "created_at": "2024-04-11T15:38:21.431Z",
+    "updated_at": null,
+    "theme_id": 2
+  },
+  {
+    "id": 5,
+    "question_text": "Quel est la 2ème lettre de l'alphabet",
+    "quiz_id": 2,
+    "created_at": "2024-04-11T15:38:21.431Z",
+    "updated_at": null,
+    "theme_id": 2
+  },
+  {
+    "id": 6,
+    "question_text": "Quel est la 3ème lettre de l'alphabet",
+    "quiz_id": 2,
+    "created_at": "2024-04-11T15:38:21.431Z",
+    "updated_at": null,
+    "theme_id": 2
+  }
+]
+ */
 router.get('/quiz/:id([0-9]*)', questionController.getQuestionsFromQuiz.bind(questionController));
 router.patch('/:id([0-9]*)', validate(patch, 'body'),questionController.modify.bind(questionController));
 router.delete('/:id([0-9]*)', questionController.delete.bind(questionController));
